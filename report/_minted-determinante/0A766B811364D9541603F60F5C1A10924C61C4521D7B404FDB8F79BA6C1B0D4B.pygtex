@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}ifndef MAC\PYGZus{}DETERMINANTE\PYGZus{}HPP}
+\PYG{c+cp}{\PYGZsh{}define MAC\PYGZus{}DETERMINANTE\PYGZus{}HPP}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}vector\PYGZgt{}	}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stdexcept\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}armadillo\PYGZgt{}}
+
+\PYG{k}{namespace} \PYG{n}{mac} \PYG{p}{\PYGZob{}}
+
+    \PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+    \PYG{k}{using} \PYG{n}{Matrix} \PYG{o}{=} \PYG{n}{arma}\PYG{o}{::}\PYG{n}{mat}\PYG{p}{;}
+
+    \PYG{k+kt}{double} \PYG{n+nf}{determinante2x2}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Matrix}\PYG{o}{\PYGZam{}} \PYG{n}{mat}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{mat}\PYG{p}{.}\PYG{n}{is\PYGZus{}square}\PYG{p}{()} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{mat}\PYG{p}{.}\PYG{n}{n\PYGZus{}rows} \PYG{o}{==} \PYG{l+m+mi}{2UL}\PYG{p}{))}
+            \PYG{k}{throw} \PYG{n}{logic\PYGZus{}error}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Matrix is not 2x2!\PYGZdq{}}\PYG{p}{);}
+            
+        \PYG{k}{return} \PYG{n}{mat}\PYG{p}{(}\PYG{l+m+mi}{0UL}\PYG{p}{,} \PYG{l+m+mi}{0UL}\PYG{p}{)} \PYG{o}{*} \PYG{n}{mat}\PYG{p}{(}\PYG{l+m+mi}{1UL}\PYG{p}{,} \PYG{l+m+mi}{1UL}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{mat}\PYG{p}{(}\PYG{l+m+mi}{0UL}\PYG{p}{,} \PYG{l+m+mi}{1UL}\PYG{p}{)} \PYG{o}{*} \PYG{n}{mat}\PYG{p}{(}\PYG{l+m+mi}{1UL}\PYG{p}{,} \PYG{l+m+mi}{0UL}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k+kt}{double} \PYG{n+nf}{determinante}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Matrix}\PYG{o}{\PYGZam{}} \PYG{n}{mat}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{mat}\PYG{p}{.}\PYG{n}{is\PYGZus{}square}\PYG{p}{())}
+            \PYG{k}{throw} \PYG{n}{logic\PYGZus{}error}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Matrix is not square!\PYGZdq{}}\PYG{p}{);}
+            
+        \PYG{k}{auto} \PYG{n}{n} \PYG{o}{=} \PYG{n}{mat}\PYG{p}{.}\PYG{n}{n\PYGZus{}rows}\PYG{p}{;}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{n} \PYG{o}{==} \PYG{l+m+mi}{2UL}\PYG{p}{)} 
+            \PYG{k}{return} \PYG{n}{determinante2x2}\PYG{p}{(}\PYG{n}{mat}\PYG{p}{);}
+        
+        \PYG{k+kt}{double} \PYG{n}{result} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+        \PYG{n}{Matrix} \PYG{n}{new\PYGZus{}mat} \PYG{o}{=} \PYG{n}{Matrix}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1UL}\PYG{p}{,} \PYG{n}{n} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1UL}\PYG{p}{);}
+
+        \PYG{k}{for} \PYG{p}{(}\PYG{k}{auto} \PYG{n}{k} \PYG{o}{=} \PYG{l+m+mi}{0UL}\PYG{p}{;} \PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{k}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{for} \PYG{p}{(}\PYG{k}{auto} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1UL}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{k}{for} \PYG{p}{(}\PYG{k}{auto} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0UL}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                    \PYG{k}{if} \PYG{p}{(}\PYG{n}{k} \PYG{o}{==} \PYG{n}{j}\PYG{p}{)} \PYG{k}{continue}\PYG{p}{;}
+                    
+                    \PYG{n}{new\PYGZus{}mat}\PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{k}\PYG{o}{?} \PYG{n+nl}{j} \PYG{p}{:} \PYG{n}{j} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{=} \PYG{n}{mat}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+
+            \PYG{n}{result} \PYG{o}{+=} \PYG{n}{pow}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{k}\PYG{p}{)} \PYG{o}{*} \PYG{n}{mat}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{k}\PYG{p}{)} \PYG{o}{*} \PYG{n}{determinante}\PYG{p}{(}\PYG{n}{new\PYGZus{}mat}\PYG{p}{);}				
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{return} \PYG{n}{result}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+cp}{\PYGZsh{}endif}
+\end{Verbatim}

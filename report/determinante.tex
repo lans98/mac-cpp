@@ -1,0 +1,26 @@
+\documentclass[a4paper]{article}
+
+\usepackage{selinput}
+\SelectInputMappings{
+	aacute={á},
+	ntilde={ñ}
+}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{minted}
+
+\title{\textbf{Título}}
+\author{Kevin del Castillo Ramírez}
+\date{}
+
+\begin{document}
+\maketitle
+
+\inputminted{cpp}{../src/include/determinante.hpp}
+
+\end{document}
