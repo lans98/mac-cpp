@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}linear\PYGZus{}transformation.hpp\PYGZgt{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{mac}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{n}{LinearTransformation} \PYG{n}{t}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{);}
+
+    \PYG{n}{Matrix} \PYG{n}{transformation\PYGZus{}matrix}\PYG{p}{(\PYGZob{}}
+        \PYG{p}{\PYGZob{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1} \PYG{p}{\PYGZcb{},}
+        \PYG{p}{\PYGZob{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2} \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{});}
+
+    \PYG{n}{t}\PYG{p}{.}\PYG{n}{set\PYGZus{}transformation\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{transformation\PYGZus{}matrix}\PYG{p}{);}
+
+    \PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{t}\PYG{p}{(}\PYG{n}{CVector}\PYG{p}{(\PYGZob{}} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{1} \PYG{p}{\PYGZcb{}))} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

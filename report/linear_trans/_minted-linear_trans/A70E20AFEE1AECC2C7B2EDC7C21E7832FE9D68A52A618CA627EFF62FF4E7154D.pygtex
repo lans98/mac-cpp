@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}linear\PYGZus{}transformation.hpp\PYGZgt{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{mac}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{n}{Matrix} \PYG{n}{polygon}\PYG{p}{(\PYGZob{}}
+        \PYG{p}{\PYGZob{}} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{2} \PYG{p}{\PYGZcb{},}
+        \PYG{p}{\PYGZob{}} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{2} \PYG{p}{\PYGZcb{},}
+        \PYG{p}{\PYGZob{}} \PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{4} \PYG{p}{\PYGZcb{},}
+        \PYG{p}{\PYGZob{}} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{4} \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{});}
+
+    \PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Initial polygon (each row is a vertice)}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+    \PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{polygon}\PYG{p}{;}
+
+    \PYG{n}{LinearTransformation} \PYG{n}{rotate}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{Matrix}\PYG{p}{(\PYGZob{}}
+        \PYG{p}{\PYGZob{}} \PYG{n}{cos}\PYG{p}{(}\PYG{n}{M\PYGZus{}PI}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{),} \PYG{o}{\PYGZhy{}}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{M\PYGZus{}PI}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{p}{\PYGZcb{},}
+        \PYG{p}{\PYGZob{}} \PYG{n}{sin}\PYG{p}{(}\PYG{n}{M\PYGZus{}PI}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{),}  \PYG{n}{cos}\PYG{p}{(}\PYG{n}{M\PYGZus{}PI}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}));}
+
+    \PYG{k}{for} \PYG{p}{(}\PYG{k}{auto} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{polygon}\PYG{p}{.}\PYG{n}{n\PYGZus{}rows}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+        \PYG{n}{polygon}\PYG{p}{.}\PYG{n}{row}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)} \PYG{o}{=} \PYG{n}{rotate}\PYG{p}{(}\PYG{n}{RVector}\PYG{p}{(}\PYG{n}{polygon}\PYG{p}{.}\PYG{n}{row}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)));}
+
+    \PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Rotated polygon (each row is a vertice)}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{;}
+    \PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{polygon}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

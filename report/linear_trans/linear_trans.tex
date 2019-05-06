@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article}
+
+\usepackage{selinput}
+\SelectInputMappings{
+	aacute={á},
+	ntilde={ñ}
+}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{minted}
+
+\title{\textbf{Transformación lineal}}
+\author{Kevin del Castillo Ramírez}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Transformación lineal}
+\inputminted{cpp}{../../src/include/linear_transformation.hpp}
+
+\section{Código de prueba}
+
+\inputminted{cpp}{../../test/linear_transformation.cpp}
+\newpage
+\inputminted{cpp}{../../test/rotate_polygon.cpp}
+
+\end{document}

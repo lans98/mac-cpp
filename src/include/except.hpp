@@ -34,6 +34,14 @@ namespace mac {
             UnderdeterminedOrOverdetermined, 
             The resulting system is underdetermined or overdetermined);
 
+    define_exception(
+            IncorrectDimensionParameter,
+            The parameter given has incorrect dimension);
+
+    define_exception(
+            NotConfigured,
+            This object is not fully configured!);
+
     class NotImplemented : public exception {
     private:
         string reason;

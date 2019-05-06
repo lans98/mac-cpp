@@ -1,0 +1,65 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}ifndef MAC\PYGZus{}LINEAR\PYGZus{}TRANSFORMATION\PYGZus{}HPP}
+\PYG{c+cp}{\PYGZsh{}define MAC\PYGZus{}LINEAR\PYGZus{}TRANSFORMATION\PYGZus{}HPP}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}matrix.hpp\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}except.hpp\PYGZgt{}}
+
+\PYG{k}{namespace} \PYG{n}{mac} \PYG{p}{\PYGZob{}}
+
+    \PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+    \PYG{k}{class} \PYG{n+nc}{LinearTransformation} \PYG{p}{\PYGZob{}}
+    \PYG{k}{private}\PYG{o}{:}
+        \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{dimension\PYGZus{}in}\PYG{p}{;}
+        \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{dimension\PYGZus{}out}\PYG{p}{;}
+        \PYG{n}{Matrix} \PYG{n}{transformation\PYGZus{}matrix}\PYG{p}{;}
+
+        \PYG{k+kt}{bool} \PYG{n}{configured} \PYG{o}{=} \PYG{n+nb}{false}\PYG{p}{;}
+
+    \PYG{k}{public}\PYG{o}{:}
+        \PYG{n}{LinearTransformation}\PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{dimension\PYGZus{}in}\PYG{p}{,} \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{dimension\PYGZus{}out}\PYG{p}{,} \PYG{n}{Matrix} \PYG{n}{matrix} \PYG{o}{=} \PYG{n}{Matrix}\PYG{p}{())}\PYG{o}{:}
+            \PYG{n}{dimension\PYGZus{}in}\PYG{p}{(}\PYG{n}{dimension\PYGZus{}in}\PYG{p}{),}
+            \PYG{n}{dimension\PYGZus{}out}\PYG{p}{(}\PYG{n}{dimension\PYGZus{}out}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{set\PYGZus{}transformation\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{matrix}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k+kt}{void} \PYG{n}{set\PYGZus{}transformation\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{Matrix} \PYG{n}{matrix}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{matrix}\PYG{p}{.}\PYG{n}{n\PYGZus{}rows} \PYG{o}{!=} \PYG{n}{dimension\PYGZus{}out} \PYG{o}{||} \PYG{n}{matrix}\PYG{p}{.}\PYG{n}{n\PYGZus{}cols} \PYG{o}{!=} \PYG{n}{dimension\PYGZus{}in}\PYG{p}{)}
+                \PYG{k}{throw} \PYG{n}{IncorrectDimensionParameter}\PYG{p}{();}
+
+            \PYG{n}{transformation\PYGZus{}matrix} \PYG{o}{=} \PYG{n}{matrix}\PYG{p}{;}   
+            \PYG{n}{configured} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{k+kt}{void} \PYG{n}{set\PYGZus{}dimensions\PYGZus{}parameters}\PYG{p}{(}\PYG{k+kt}{size\PYGZus{}t} \PYG{n}{dimension\PYGZus{}in}\PYG{p}{,} \PYG{k+kt}{size\PYGZus{}t} \PYG{n}{dimension\PYGZus{}out}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{dimension\PYGZus{}in} \PYG{o}{=} \PYG{n}{dimension\PYGZus{}in}\PYG{p}{;}
+            \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{dimension\PYGZus{}out} \PYG{o}{=} \PYG{n}{dimension\PYGZus{}out}\PYG{p}{;}
+            \PYG{n}{configured} \PYG{o}{=} \PYG{n+nb}{false}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{n}{CVector} \PYG{k}{operator}\PYG{p}{()(}\PYG{n}{CVector} \PYG{k}{const}\PYG{o}{\PYGZam{}} \PYG{n}{input}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{configured}\PYG{p}{)}
+                \PYG{k}{throw} \PYG{n}{NotConfigured}\PYG{p}{();}
+
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{input}\PYG{p}{.}\PYG{n}{n\PYGZus{}rows} \PYG{o}{!=} \PYG{n}{dimension\PYGZus{}in}\PYG{p}{)}
+                \PYG{k}{throw} \PYG{n}{IncorrectDimensionParameter}\PYG{p}{();}
+
+            \PYG{k}{return} \PYG{n}{transformation\PYGZus{}matrix} \PYG{o}{*} \PYG{n}{input}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{n}{RVector} \PYG{k}{operator}\PYG{p}{()(}\PYG{n}{RVector} \PYG{k}{const}\PYG{o}{\PYGZam{}} \PYG{n}{input}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{configured}\PYG{p}{)}
+                \PYG{k}{throw} \PYG{n}{NotConfigured}\PYG{p}{();}
+
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{input}\PYG{p}{.}\PYG{n}{n\PYGZus{}cols} \PYG{o}{!=} \PYG{n}{dimension\PYGZus{}in}\PYG{p}{)}
+                \PYG{k}{throw} \PYG{n}{IncorrectDimensionParameter}\PYG{p}{();}
+
+            \PYG{k}{return} \PYG{n}{transformation\PYGZus{}matrix} \PYG{o}{*} \PYG{n+nf}{CVector}\PYG{p}{(}\PYG{n}{input}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{};}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+cp}{\PYGZsh{}endif }
+\end{Verbatim}
